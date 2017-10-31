@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <img src="{{brand.logo.url}}">
+        <p>{{brand.details}}</p>
+    </div>
+    <div class="row">
+        {% for item in items %}
+        {% if item.brand == brand %}
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <h4>{{item}}</h4>
+            <a href="{{ item.get_absolute_url }}">{{item}}</a>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

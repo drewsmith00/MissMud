@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% block title %}MM~Checkout{% endblock %}
+
+{% block styles %}
+<style>
+form {
+  width: 480px;
+  margin: 20px auto;
+}
+
+label {
+  position: relative;
+  color: #6A7C94;
+  font-weight: 400;
+  height: 48px;
+  line-height: 48px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+label > span {
+  float: left;
+}
+
+.field {
+  background: white;
+  box-sizing: border-box;
+  font-weight: 400;
+  border: 1px solid #CFD7DF;
+  border-radius: 24px;
+  color: #32315E;
+  outline: none;
+  height: 48px;
+  line-height: 48px;
+  padding: 0 20px;
+  cursor: text;
+  width: 76%;
+  float: right;
+}
+
+.field::-webkit-input-placeholder { color: #CFD7DF; }
+.field::-moz-placeholder { color: #CFD7DF; }
+.field:-ms-input-placeholder { color: #CFD7DF; }
+
+.field:focus,
+.field.StripeElement--focus {
+  border-color: #F99A52;
+}
+
+button:focus {
+  background: #EF8C41;
+}
+
+button:active {
+  background: #E17422;
+}
+
+.outcome {
+  float: left;
+  width: 100%;
+  padding-top: 8px;
+  min-height: 20px;
+  text-align: center;
+}
+
+.success, .error {
+  display: none;
+  font-size: 13px;
+}
+
+.success.visible, .error.visible {
+  display: inline;
+}
+
+.error {
+  color: #E4584C;
+}
+
+.success {
+  color: #F8B563;
+}
+
+.success .token {
+  font-weight: 500;
+  font-size: 13px;
+}
+</style>
+{% endblock %}
+
+
+{% block jumbotron %}
+
+<h1>Checkout</h1>
+
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript">
+    Stripe.setPublishableKey('{{ publishKey }}');
+    function stripeResponseHandler(status, response) {
+
+    var $form = $('#payment-form');
+
+    if (response.error) {
+
+        $form.find('.payment-errors').text(response.error.message);
+        $form.find('.submit').prop('disabled', false);
+
+    } else {
+
+        var token = response.id;
+
+        $form.append($('<input type="hidden" name="stripeToken">').val(token));
+
+        $form.get(0).submit();
+    }
+};
+</script>
+{% endblock %}
+
+
+{% block jquery %}
+$(function() {
+    var $form = $('#payment-form');
+    $form.submit(function(event) {
+
+        $form.find('.submit').prop('disabled', true);
+
+        Stripe.card.createToken($form, stripeResponseHandler);
+
+        return false;
+    });
+});
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <form class="form" action="" method="POST" id="payment-form"> {% csrf_token %}
+            <span class="payment-errors"></span>
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_GbNwlcCnpma1uD7JOVHnxBli"
+            data-amount="999"
+            data-name="Demo Site"
+            data-description="Widget"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto">
+          </script>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}MM - Contact Us{% endblock %}
+
+{% block jumbotron %}
+        <h1>{{ title }}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="well">
+            {% if confirm_message %}
+            <p>{{ confirm_message }}</p>
+            {% endif %}
+            {% if form %}
+            <form method="POST" action="" class="uniForm"> {% csrf_token %}
+                {{form|crispy }}
+                <input type="submit" value="Send" class="btn btn-info" />
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

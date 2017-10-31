@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Events{% endblock %}
+{% block jumbotron %}
+      <div class="jumbotron">
+        <h1>Upcoming 2017 Events</h1>
+      </div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% for event in all_events %}
+
+    <div class="col-lg-4 col-md-4">
+        <div class="thumbnail" style="text-align: center; margin-top: 20px; height: auto; background-color: #5F9EA0;">
+            <a href="{{event.id}}"><img src="{{ event.image.url }}" style="width:330px;height:200px; margin-top: 15px;"></a>
+            <h4><a href="{{event.id}}">{{event}}</a></h4>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+

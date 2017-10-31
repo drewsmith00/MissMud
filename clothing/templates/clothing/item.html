@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block jumbotron %}
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-3">
+    </div>
+    <div class="col-md-8 col-sm-8 col-xs-8">
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="container well">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <img src="{{item.img1.url}}" class="img-responsive">
+            <img src="{{item.img2.url}}" class="img-responsive">
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <img src="{{item.brand.logo.url}}" class="img-responsive">
+            <h2>{{item}}</h2>
+            <h3>{{item.price}}</h3>
+
+            <form action="#" method="POST"> {% csrf_token %}
+                <input type="hidden" name="item" value="{{item}}">
+                <input type="hidden" name="price" value="{{item.price}}">
+                <input type="text" name="quantity" style="color:black;" value="1">
+                <input type="submit" value="Add to cart" />
+            </form>
+
+            <p>{{item.brand.details}}</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

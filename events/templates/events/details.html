@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Events{% endblock %}
+{% block event_active %}active{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6" style="text-align: center;">
+        <img src="{{event.image.url}}" class="img-responsive" style="width:304px">
+    </div>
+    <div class="col-md-6" style="text-align: center;">
+        <h1>{{event.event}}</h1>
+        <h3>{{ event }}</h3>
+        <p>{{ event.details }}</p>
+    </div>
+</div>
+
+{% endblock %}

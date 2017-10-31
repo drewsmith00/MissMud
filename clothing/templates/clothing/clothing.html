@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for brand in all_brands %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-3">
+            <a href="{{brand.get_absolute_url}}"><img src="{{brand.logo.url}}" class="img-responsive"></a>
+        </div>
+        <div class="col-lg-9 col-md-9">
+            <p>{{brand.details}}</p>
+            <p><a href="{{brand.get_absolute_url}}"> View all {{brand.name}} products</a></p>
+        </div>
+    </div>
+
+    {% for item in items %}
+    {% if item.brand == brand %}
+    <div class="row">
+        <div class="col-lg-3 col-md-3">
+            <h1>{{item}} - ${{item.price}}</h1>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+{% endfor %}
+</div>
+
+{% endblock %}
