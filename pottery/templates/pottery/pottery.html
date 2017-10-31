@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block jumbotron %}
+<h1>Pottery</h1>
+
+{% endblock %}
+{% block content %}
+
+{% for brand in all_brands %}
+<div class="container">
+    <div class="well row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <h1><a href="{{brand.get_absolute_url}}"><img src="{{ brand.logo.url }}" class="img-responsive"></a></h1>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <p>{{brand.details}}</p>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        {% if item in all_items == brand %}
+            {{item.name}}
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,209 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel ="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <title>{% block title %}Mississippi Mud{% endblock %}</title>
+</head>
+
+    <title>Theme Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="theme.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style>
+body {
+    color: #2F4F4F;
+    background-color: #f0f8ff;
+    font-family: 'Satisfy', cursive;
+}
+
+nav div {
+  background-color: #5F9EA0;
+}
+
+.navbar-default .navbar-brand {
+    color: #f5fffa;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #f5fffa;
+}
+nav>.open>a {
+    color: #f5fffa;
+}
+.dropdown-menu>li>a {
+    color: #2F4F4F;
+    background-color: #f0f8ff;
+}
+.dropdown-menu>li>a:hover {
+    color: #2F4F4F;
+    background-color: #f0f8ff;
+}
+.navbar-default .navbar-nav>.open>a {
+    background-color: #f0f8ff;
+}
+.navbar-default .navbar-nav>.active>a {
+    background-color: #f0f8ff;
+}
+
+nav.navbar.navbar-default {
+    background-color: #f0f8ff;
+    border-bottom: 0px;
+}
+
+.navbar-brand> a:link{
+    color: #f5fffa;
+}
+
+li.active {
+  background-color: #F0F8FF;
+  }
+h1 {
+    color: #2F4F4F;
+    text-align: center;
+}
+
+h3 > a, h4 > a {
+    color:#f5fffa;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: 	#F0F8FF;
+    color: #2F4F4F;
+}
+
+.well {
+    background-color: #5F9EA0;
+    color: #F5FFFA;
+}
+
+#footer {
+  background-color: #F0F8FF;
+  bottom: 0;
+}
+
+#foot-well {
+    margin-top: 1cm;
+    text-align: center;
+}
+
+div button {
+    background-color:#F0F8FF;
+    border-color: #F0F8FF;
+}
+
+button.btn.btn-default > a {
+    color: 	#2F4F4F;
+}
+
+{% block styles %}
+{% endblock %}
+
+</style>
+
+<body>
+{% include 'navbar.html' %}
+
+<div class="container">
+    <div class="jumbotron">
+
+        {% block jumbotron %}
+        {% endblock %}
+
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+
+
+    <!-- Bootstrap core JavaScript ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    {% block script %}
+    {% endblock %}
+
+    <script>
+    $(document).ready(function(){
+
+    {% block jquery %}
+    {% endblock %}
+
+    });
+    </script>
+
+    <!-- End Javascript -->
+
+    <!-- Footer -->
+
+    <div class="container" id="footer">
+        <div class="row">
+            <div class="col-md-8">
+                <div id="foot-well" class="well well-lg">
+                    <div class="btn-group">
+                        <button type="button"
+                                class="btn btn-default"><a href="{% url 'home' %}">Mississippi Mud</a></button>
+                        <button type="button"
+                                class="btn btn-default"><a href="{% url 'pottery' %}">Pottery</a></button>
+                        <button type="button"
+                                class="btn btn-default"><a href="{% url 'jewelry' %}">Jewelry</a></button>
+                        <button type="button"
+                                class="btn btn-default"><a href="{% url 'clothing' %}">Clothing</a></button>
+                        <button type="button"
+                                class="btn btn-default"><a href="{% url 'events' %}">Events</a></button>
+                        <button type="button"
+                                class="btn btn-default"><a href="{% url 'contact' %}">Contact</a></button>
+                        <button type="button"
+                                class="btn btn-default"><a href="{% url 'about' %}">About</a></button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="http://localhost:8000/media/logo_new.jpg">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- End Footer -->
+
+</div>
+</body>
+</html>
